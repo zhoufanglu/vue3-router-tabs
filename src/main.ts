@@ -4,7 +4,8 @@ import App from './App.vue'
 
 const app = createApp(App)
 // 引入开发环境
-import Vue3RouterTabs from './components'
+import Vue3RouterTabs from './components/index'
+console.log(8, Vue3RouterTabs)
 // 引入打包
 // @ts-ignore
 //vite不支持导入umd.js文件类型 所以要另外打包成mjs

@@ -1,13 +1,12 @@
 {
   "name": "vue3-router-tabs",
   "private": false,
-  "version": "0.0.11",
-  "type": "module",
+  "version": "0.0.12",
   "files": [
     "lib"
   ],
-  "main": "./lib/vue3-router-tabs.umd.js",
-  "moudule": "./lib/vue3-router-tabs.mjs",
+  "main": "lib/vue3-router-tabs.umd.js",
+  "moudule": "lib/vue3-router-tabs.mjs",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
