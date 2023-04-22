@@ -1,6 +1,6 @@
 {
   "name": "vue3-router-tabs",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "main": "./lib/vue3-router-tabs.umd.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "npm run build && npm version patch && npm publish"
   },
   "exports": {
     ".": {
