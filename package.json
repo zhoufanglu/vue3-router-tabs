@@ -1,12 +1,12 @@
 {
   "name": "vue3-router-tabs",
   "private": false,
-  "version": "0.0.13",
+  "version": "0.0.15",
   "files": [
     "lib"
   ],
-  "main": "./lib/vue3-router-tabs.umd.js",
-  "moudule": "./lib/vue3-router-tabs.es.js",
+  "main": "lib/vue3-router-tabs.umd.js",
+  "moudule": "lib/vue3-router-tabs.mjs",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -15,7 +15,7 @@
   },
   "exports": {
     ".": {
-      "import": "./lib/vue3-router-tabs.es.js",
+      "import": "./lib/vue3-router-tabs.mjs",
       "require": "./lib/vue3-router-tabs.umd.js"
     },
     "./lib/style.css": "./lib/style.css"
