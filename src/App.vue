@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <RouterNavBar></RouterNavBar>
+    <RouterTabs></RouterTabs>
   </div>
 </template>
 <script setup>

@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 export default {
-  name: 'RouterNavBar'
+  name: 'RouterTabs'
 }
 </script>
 <script setup lang="ts">

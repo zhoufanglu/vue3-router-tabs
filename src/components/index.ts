@@ -1,12 +1,10 @@
-import RouterNavBar from './router-nav-bar/index.vue'
-
-export {RouterNavBar}
-const component = [RouterNavBar]
+import RouterTabs from './router-tabs/index.vue'
+// 按需引入导出
+export {RouterTabs}
+// 全局导出
 const Vue3RouterNavBar = {
-  install(App: any) {
-    component.forEach((item) => {
-      App.component(item.name, RouterNavBar)
-    });
+  install(app: any) {
+    app.component('RouterTabs', RouterTabs)
   },
 }
 
