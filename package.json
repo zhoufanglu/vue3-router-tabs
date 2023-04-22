@@ -1,25 +1,29 @@
 {
   "name": "vue3-router-tabs",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
+  "files": [
+    "lib"
+  ],
   "main": "./lib/vue3-router-tabs.umd.js",
-  "moudule": "./lib/vue3-router-tabs.es.js",
+  "moudule": "./lib/vue3-router-tabs.mjs",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "publish": "npm run build && npm version patch && npm publish"
+    "publish: out": "npm run build && npm version patch && npm publish"
   },
   "exports": {
     ".": {
-      "import": "./lib/vue3-router-tabs.es.js",
+      "import": "./lib/vue3-router-tabs.mjs",
       "require": "./lib/vue3-router-tabs.umd.js"
     },
     "./lib/style.css": "./lib/style.css"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "vue": "^3.2.47",
+    "vue3-router-tabs": "^0.0.10"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
