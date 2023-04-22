@@ -1,7 +1,7 @@
 {
   "name": "vue3-router-tabs",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "main": "./lib/vue3-router-tabs.umd.js",
   "moudule": "./lib/vue3-router-tabs.es.js",
