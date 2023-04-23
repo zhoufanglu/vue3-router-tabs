@@ -3,9 +3,7 @@ import {
   ref,
   watch,
   onMounted,
-  computed,
   toRefs,
-  nextTick
 } from 'vue'
 import type { TabType } from './types'
 
@@ -47,6 +45,10 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
       variables.moveWidth * variables.moveCount
     }px)`
   }
+  const handlePos = () => {
+    setMove()
+  }
+
   // 设置当前选中的tab class
   const setActiveClass = (tab: TabType, route: any) => {
     let className: string | null = null
@@ -135,38 +137,34 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
         return false
       }
       const outWidth = tabsOutRef.value!.offsetWidth
-      const innerWidth = tabsRef.value!.offsetWidth
+      // const innerWidth = tabsRef.value!.offsetWidth
       const activeTab = document.querySelector('.tab-active')
-      const activePos = parseInt(String(activeTab?.getBoundingClientRect().x))
+      const activePos =
+        parseInt(String(activeTab?.getBoundingClientRect().x)) -
+        parseInt(String(tabsOutRef.value.getBoundingClientRect().x))
 
-      console.log('容器宽度', outWidth)
-      console.log('实际宽度', innerWidth)
-      console.log(' 当前选择的Tab位置:--', activePos)
-      console.log('----')
-      // 找出容器的范围
-      const boxRect = tabsOutRef.value!.getBoundingClientRect()
-      const boxStart = parseInt(String(boxRect.x - 10))
-      const boxEnd = parseInt(String(boxStart + boxRect.width - 10))
-      console.log('容器box范围:--', boxStart + '-' + boxEnd)
-      console.log('---------------')
-      let count = -1
-      // 判断是否需要移动，怎样移动
-      if (activePos < boxStart) {
-        console.log('左移')
-        count = checkMoveCount('left', Math.abs(activePos - boxStart))
-        variables.moveCount = variables.moveCount - count
-      } else if (activePos > boxEnd) {
-        console.log('右移')
-        count = checkMoveCount('right', Math.abs(activePos - boxEnd))
-        variables.moveCount = variables.moveCount + count
-      } else {
-        count = -1
-        console.log('不进行移动')
-      }
-      if (count !== -1) {
+      /*console.log('可视区域范围', `0~${outWidth}`)
+      console.log('实际宽度', `${innerWidth}`)
+      console.log(' 当前选择的Tab相对于可视区域的位置:--', activePos)
+      console.log('----')*/
+      // 判断当前选项在不在可视区域内， 如果不在，进行定位
+      if(activePos >0 && activePos + activeTab!.clientWidth/2 < outWidth){
+        // console.log('不需要移动')
+        return false
+      }else {
+        if(activePos<0){
+          // 左移
+          variables.moveCount--
+          // console.error('左移')
+        }else if(activePos>outWidth) {
+          // 右移
+          variables.moveCount++
+          // console.error('右移')
+        }
         translateX()
+        setMove()
       }
-    })
+    }, 200)
   }
 
   const checkMoveCount = (type: string, offset: number) => {
@@ -187,7 +185,8 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
     nextClick,
     tabItemClick,
     handleDel,
-    closeAllTab
+    closeAllTab,
+    handlePos
   }
 }
 export { useRouterTabs }

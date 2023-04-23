@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 500px">
     <RouterTabs
         v-model:tabs="tabs"
         @handleTabClick="handleTabClick"
@@ -9,15 +9,18 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import type {TabType} from './components/router-tabs/types'
-import { useRoute, useRouter } from 'vue-router'
+// import { useRoute, useRouter } from 'vue-router'
 
 // 导入路由
-const route = useRoute()
-const router = useRouter()
+/*const route = useRoute()
+const router = useRouter()*/
 
 const tabs = ref<TabType[]>([
   { name: '表格', path: '/table', activeMenu: 'table' },
   { name: '标题', path: '/title', activeMenu: 'title' },
+  { name: '标题2', path: '/title2', activeMenu: 'title2' },
+  { name: '标题3', path: '/title3', activeMenu: 'title3' },
+  { name: '标题4', path: '/title4', activeMenu: 'title4' },
   { name: '卡片', path: '/card', activeMenu: 'card' }
 ])
 

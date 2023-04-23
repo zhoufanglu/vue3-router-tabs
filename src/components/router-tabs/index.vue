@@ -1,6 +1,6 @@
 <template>
+  <button @click="handlePos">定位{{variables.moveCount}}</button>
   <div class="rs-tabs">
-    <!--    <el-button @click="handlePos">定位</el-button>-->
     <!--    <div ref="testRef">aaa</div>-->
     <!--home icon-->
     <div style="width: 50px; height: 50px">
@@ -137,11 +137,10 @@ const {
   tabsOutRef,
   handleDel,
   setActiveClass,
-  closeAllTab
+  closeAllTab,
+    handlePos
 } = useRouterTabs(props.tabs, emit)
 const { isCanMove, curActive } = toRefs(variables)
-
-const handlePos = () => {}
 </script>
 
 <style scoped lang="scss">
@@ -162,7 +161,7 @@ const handlePos = () => {}
   -moz-osx-font-smoothing: grayscale;
 }
 .rs-tabs {
-  border: solid 1px red;
+  // border: solid 1px red;
   $theme: #5385ed;
   flex-shrink: 0;
   height: 46px !important;
@@ -208,6 +207,7 @@ const handlePos = () => {}
     @extend .prev-icon;
   }
   .tab-box {
+    // border: solid 1px red;
     width: calc(100% - 50px - 64px);
     display: flex;
     align-items: center;
@@ -215,7 +215,7 @@ const handlePos = () => {}
     overflow: hidden;
     padding: 0 16px;
     .tab-panel {
-      // background-color: #48a148;
+      // background-color: #eeeeee!important;
       box-sizing: border-box;
       height: 32px;
       display: flex;
