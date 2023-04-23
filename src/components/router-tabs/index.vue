@@ -136,9 +136,8 @@ const {
   handleDel,
   setActiveClass,
   closeAllTab,
-    handlePos
-} = useRouterTabs(props.tabs, emit)
-const { isCanMove, curActive } = toRefs(variables)
+} = useRouterTabs(props.tabs, emit, props.route)
+const { isCanMove } = toRefs(variables)
 </script>
 
 <style scoped lang="scss">

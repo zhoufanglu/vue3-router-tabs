@@ -8,7 +8,7 @@ import {
 } from 'vue'
 import type { TabType } from './types'
 
-const useRouterTabs = (tabs: TabType[], emit: any) => {
+const useRouterTabs = (tabs: TabType[], emit: any, route: any) => {
   // dom对象
   const tabsRef = ref<HTMLDivElement | null>(null) // 实际容器大小
   const tabsOutRef = ref<HTMLDivElement | null>(null) // 外侧容器对象
@@ -94,6 +94,12 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
     },
     { deep: true }
   )
+  // 监听路由变化
+// 判断路由，控制当前导航标签
+  watch(() => route.path, (newValue) => {
+    setMove()
+  }, {immediate: false})
+
   /**********************删除逻辑***********************/
   const handleDel = (tab: TabType, index: number, route: any) => {
     const { tabList } = toRefs(variables)

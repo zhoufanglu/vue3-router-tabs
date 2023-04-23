@@ -2,6 +2,7 @@
   <div style="width: 500px">
     <RouterTabs
         v-model:tabs="tabs"
+        :route="route"
         @handleTabClick="handleTabClick"
     ></RouterTabs>
   </div>
@@ -9,11 +10,12 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import type {TabType} from './components/router-tabs/types'
-// import { useRoute, useRouter } from 'vue-router'
-
-// 导入路由
-/*const route = useRoute()
-const router = useRouter()*/
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
+setTimeout(()=>{
+  console.log(17, route)
+}, 500)
 
 const tabs = ref<TabType[]>([
   { name: '表格', path: '/table', activeMenu: 'table' },
