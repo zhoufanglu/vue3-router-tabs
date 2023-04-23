@@ -4,6 +4,7 @@ import {
   watch,
   onMounted,
   toRefs,
+  onBeforeMount
 } from 'vue'
 import type { TabType } from './types'
 
@@ -11,6 +12,7 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
   // dom对象
   const tabsRef = ref<HTMLDivElement | null>(null) // 实际容器大小
   const tabsOutRef = ref<HTMLDivElement | null>(null) // 外侧容器对象
+  let timer:ReturnType<typeof setTimeout> = setTimeout(()=>{})
   // bind value
   const variables = reactive({
     isCanMove: true,
@@ -80,11 +82,11 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
       // 新增
       if (newLength > oldLength) {
         setMove()
-        console.log('新增')
+        // console.log('新增')
       }
       // 删除
       else if (newLength < oldLength) {
-        setMove()
+        // setMove()
         console.log('删除')
       } else {
       }
@@ -113,6 +115,7 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
         curActive = tabList.value[nextIndex]
       }
       tabList.value.splice(index, 1)
+      variables.curActive = curActive.activeMenu
       emit('handleTabClick', curActive)
     }
     variables.tabList.splice(index, 1)
@@ -126,13 +129,13 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
     }
   }
 
-  const closeAllTab = (type: string) => {
+  const closeAllTab = (type: string) =>{
     emit('handleDeleteAllTab', type)
   }
 
   /**********************计算偏移距离***********************/
   const setMove = () => {
-    setTimeout(() => {
+    timer = setTimeout(() => {
       if (!tabsOutRef.value) {
         return false
       }
@@ -167,14 +170,9 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
     }, 200)
   }
 
-  const checkMoveCount = (type: string, offset: number) => {
-    console.log('每隔移动的距离', variables.moveWidth)
-    console.log(162, type, offset)
-    // 计算移动的步数
-    const count = parseInt(String(offset / variables.moveWidth)) + 1
-    console.log('移动的步数', count)
-    return count
-  }
+  onBeforeMount(() => {
+    clearTimeout(timer)
+  })
 
   return {
     setActiveClass,

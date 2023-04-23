@@ -1,7 +1,6 @@
 <template>
-  <button @click="handlePos">定位{{variables.moveCount}}</button>
+<!--  <button @click="handlePos">定位{{variables.moveCount}}</button>-->
   <div class="rs-tabs">
-    <!--    <div ref="testRef">aaa</div>-->
     <!--home icon-->
     <div style="width: 50px; height: 50px">
       <svg
@@ -77,7 +76,6 @@
     >&#xe68b;</i
     >
     <!--?关闭按钮-->
-<!--
     <el-dropdown v-show="tabs.length !== 0">
       <span class="el-dropdown-link" style="margin-left: 10px">
         <i class="iconfont">&#xe690;</i>
@@ -93,7 +91,6 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
--->
   </div>
 </template>
 
@@ -103,6 +100,10 @@ export default {
 }
 </script>
 <script setup lang="ts">
+import {ElDropdownMenu, ElDropdownItem, ElDropdown}  from 'element-plus'
+import 'element-plus/es/components/dropdown/style/css'
+import 'element-plus/es/components/dropdown-menu/style/css'
+import 'element-plus/es/components/dropdown-item/style/css'
 import { useRouterTabs } from './useRouterTabs'
 import { toRefs, PropType } from 'vue'
 import type { TabType } from './types'
@@ -110,11 +111,8 @@ import type { TabType } from './types'
 const props = defineProps({
   tabs: {
     type: Array as PropType<Array<TabType>>,
-    default: () => []
-  },
-  activeTab: {
-    type: String as PropType<string>,
-    default: ''
+    default: () => [],
+    required: true
   },
   route: {
     type: Object as PropType<any>,
@@ -146,10 +144,10 @@ const { isCanMove, curActive } = toRefs(variables)
 <style scoped lang="scss">
 /* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-  font-family: 'iconfont';  /* Project id 3859559 */
-  src: url('//at.alicdn.com/t/c/font_3859559_xuiix9blq0a.woff2?t=1677735481143') format('woff2'),
-  url('//at.alicdn.com/t/c/font_3859559_xuiix9blq0a.woff?t=1677735481143') format('woff'),
-  url('//at.alicdn.com/t/c/font_3859559_xuiix9blq0a.ttf?t=1677735481143') format('truetype');
+  font-family: 'iconfont';  /* Project id 4033269 */
+  src: url('//at.alicdn.com/t/c/font_4033269_utndzardmhg.woff2?t=1682236727187') format('woff2'),
+  url('//at.alicdn.com/t/c/font_4033269_utndzardmhg.woff?t=1682236727187') format('woff'),
+  url('//at.alicdn.com/t/c/font_4033269_utndzardmhg.ttf?t=1682236727187') format('truetype');
 }
 
 .iconfont {
