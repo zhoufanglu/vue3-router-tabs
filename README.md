@@ -5,6 +5,29 @@
 ### 1、安装
 ```npm i vue3-router-tabs -D```
 ### 2、使用
+```vue
+<template>
+  <RouterTabs 
+      :tabs="tabs"
+      :route="route"
+  ></RouterTabs>
+</template>
+<script setup lang="ts">
+import 'vue3-router-tabs/lib/style.css' // 引入样式
+import { RouterTabs } from 'vue3-router-tabs' // 引入组件
+import type { TabType } from 'vue3-router-tabs/lib/components/router-tabs/types' // 引入类型 js可以不引入
+
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+const tabs = ref<TabType[]>([
+  { name: '表格', path: '/table', activeMenu: 'table' },
+  { name: '标题', path: '/title', activeMenu: 'title' },
+  { name: '卡片', path: '/card', activeMenu: 'card' }
+])
+</script>
+
+```
 
 ## 属性 & 事件
 | 属性                 | 说明                                               | 类型                     | 是否必填 |
