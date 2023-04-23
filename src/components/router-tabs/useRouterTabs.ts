@@ -117,8 +117,9 @@ const useRouterTabs = (tabs: TabType[], emit: any) => {
       tabList.value.splice(index, 1)
       variables.curActive = curActive.activeMenu
       emit('handleTabClick', curActive)
+    }else{
+      variables.tabList.splice(index, 1)
     }
-    variables.tabList.splice(index, 1)
     // ?如果删光了，跳转到首页
     if (!variables.tabList.length) {
       emit('handleTabClick', {
