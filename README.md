@@ -1,6 +1,7 @@
 ## 添加tab的时候自动会定位到视图界面
 ![bar.gif](..%2F..%2F..%2Fgif-licecap%2Fbar.gif)
-
+##
+[demo](https://zhoufanglu.github.io/vue3-router-tabs-gitpage/#/home)
 ## 使用
 ### 1、安装
 ```npm i vue3-router-tabs -D```
@@ -10,6 +11,8 @@
   <RouterTabs 
       :tabs="tabs"
       :route="route"
+      @handleTabClick="handleTabClick"
+      @handleDeleteAllTab="handleDeleteAllTab"
   ></RouterTabs>
 </template>
 <script setup lang="ts">
@@ -17,14 +20,30 @@ import 'vue3-router-tabs/lib/style.css' // 引入样式
 import { RouterTabs } from 'vue3-router-tabs' // 引入组件
 import type { TabType } from 'vue3-router-tabs/lib/components/router-tabs/types' // 引入类型 js可以不引入
 
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
+const router = useRouter()
 
 const tabs = ref<TabType[]>([
   { name: '表格', path: '/table', activeMenu: 'table' },
   { name: '标题', path: '/title', activeMenu: 'title' },
   { name: '卡片', path: '/card', activeMenu: 'card' }
 ])
+
+// 点击tab事件，一般直接跳转路由
+const handleTabClick = (tab: TabType) => {
+  console.log(20, tab)
+  router.push(tab.path)
+}
+// 右侧关闭事件
+const handleDeleteAllTab = (type: 'all' | 'other') => {
+  if (type === 'all') {
+    tabs.value = []
+  } else if (type === 'other') {
+    const curPageTab = tabs.value.find((tab: TabType) => tab.path === route.path)
+    tabs.value = curPageTab ? [curPageTab] : []
+  }
+}
 </script>
 
 ```
