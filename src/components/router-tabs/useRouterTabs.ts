@@ -137,6 +137,7 @@ const useRouterTabs = (tabs: TabType[], emit: any, route: any) => {
   }
 
   const closeAllTab = (type: string) =>{
+    variables.isCanMove = false
     emit('handleDeleteAllTab', type)
   }
 

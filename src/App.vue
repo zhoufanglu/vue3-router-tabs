@@ -4,6 +4,7 @@
         v-model:tabs="tabs"
         :route="route"
         @handleTabClick="handleTabClick"
+        @handle-delete-all-tab="handleDeleteAllTab"
     ></RouterTabs>
   </div>
 </template>
@@ -30,6 +31,16 @@ const tabs = ref<TabType[]>([
 const handleTabClick = (tab: TabType) => {
   console.log(20, tab)
 }
+// 右侧关闭事件
+const handleDeleteAllTab = (type: 'all' | 'other') => {
+  if (type === 'all') {
+    tabs.value = []
+  } else if (type === 'other') {
+    const curPageTab = tabs.value.find((tab: TabType) => tab.path === route.path)
+    tabs.value = curPageTab ? [curPageTab] : []
+  }
+}
+
 </script>
 <style scoped>
 .logo {
